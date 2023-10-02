@@ -1,0 +1,17 @@
+string apiKey = "...secret...";
+var client = new Client(apiKey);
+//or
+Client.ApiKey = "...secret..." //this way you don't have to insert the ApiKey explicitly, the ApiKey is going to be provided automatically to every 'Client' instance
+var client = new Client();
+
+await client.Blockchains.GetAll(); //get blockchains list
+await client.Blockchains.GetById("gincoin"); //get the gincoin blockchain
+
+await client.Nodes.GetAll(); //get all my nodes
+await client.Nodes.GetById("replace-with-node-id"); //get all my nodes
+await client.Nodes.Create(new NodeCreationData(true, "gincoin", 1000, "tx-id-here", null));
+await client.Nodes.Update(new NodeUpdate("replace-with-node-id", "replace-with-node-name", new Dictionary<string, string>() { { "key1", "value1" } })); //update a node
+await client.Nodes.Delete("replace-with-node-id"); //delete a node
+
+await client.User.GetDetails(); //get current user's details
+await client.User.GetTransactionsList(); //get current user's billing transactions
